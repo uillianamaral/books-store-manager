@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity(name = "author")
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,10 +18,9 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(name = "age", nullable = false)
+    @Column(nullable = false)
     private Integer age;
-
 }

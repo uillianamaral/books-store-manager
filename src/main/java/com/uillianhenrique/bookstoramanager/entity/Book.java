@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity(name = "book")
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,22 +18,23 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(name = "pages", nullable = false)
+    @Column(nullable = false)
     private Integer pages;
 
-    @Column(name = "chapters", nullable = false)
+    @Column(nullable = false)
     private Integer chapters;
 
-    @Column(name = "isbn", nullable = false)
+    @Column(nullable = false)
     private String isbn;
 
-    @Column(name = "publisher_name", nullable = false, unique = false)
+    @Column(name = "publisher_name", nullable = false, unique = true)
     private String publisherName;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "author_id")
     private Author author;
+
 }
